@@ -1,39 +1,63 @@
-# BazarDor (বাজার দর) — beginner setup
+# BazarDor (বাজার দর)
 
-## Run on Windows
-1. Extract this ZIP. Open VS Code → File → Open Folder → choose the extracted `bazardor-project` folder (the one containing `package.json`).
-2. VS Code → Terminal → New Terminal.
-3. Run these commands one at a time:
+BazarDor is a responsive market-price information platform designed to help users explore and compare everyday product prices across different markets in Bangladesh.
 
-```powershell
+## Features
+
+- Browse products and their latest available market prices.
+- Explore products by category.
+- View individual product details.
+- Compare prices across different markets.
+- Identify products with rising and falling prices.
+- User registration and sign-in interface.
+- User profile page.
+- Responsive layout for desktop, tablet, and mobile devices.
+- Loading and custom 404 pages.
+
+## Technologies Used
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- Better Auth
+- SQLite
+- REST API
+
+## Getting Started
+
+Install dependencies:
+
+```bash
 npm install
-Copy-Item .env.example .env.local
+```
+
+Start the development server:
+
+```bash
 npm run dev
 ```
 
-4. Keep the terminal open and visit http://localhost:3000. Stop the server with Ctrl+C.
+Open http://localhost:3000 in your browser.
 
-## Features
-Responsive Bangla home page; Bangla date; category navigation; animated ticker; top six price risers/fallers; all products; category filtering and price sorting; protected product detail; Better Auth email/password; Google/GitHub OAuth integration; profile name update; loading and 404 pages; toast notifications.
+## Production Build
 
-## API
-Primary base: https://openapi.programming-hero.com/api/bazardor
-Endpoints used: `/products`, `/products/:id`, `/categories`. If needed, change `API` in `lib/products.ts` to `https://api.api-store.workers.dev/api/bazardor` or `https://api.abcz.workers.dev/api/bazardor`. API response fields can vary; verify live data. If the API is unavailable, sample fallback prices appear with a visible demo notice; these are not real market prices.
+```bash
+npm run build
+npm start
+```
 
-## Authentication
-Better Auth uses a local SQLite file for local development. Email/password works after dependencies install. Google/GitHub require OAuth credentials in `.env.local`; see `.env.example`. OAuth callbacks: `http://localhost:3000/api/auth/callback/google` and `/api/auth/callback/github`.
+## Environment Variables
 
-## Vercel warning
-A local SQLite file is not durable on Vercel serverless. For production accounts, configure a hosted database and corresponding Better Auth adapter before deployment. Set `BETTER_AUTH_URL` to your deployed HTTPS URL and configure OAuth callback URLs.
+Create a `.env.local` file and configure the environment variables required for authentication and deployment. Never commit secret credentials.
 
-## 8+ meaningful Git commits
-Suggested milestones: (1) initialize app, (2) global responsive layout, (3) API integration, (4) home/ticker, (5) category/sorting, (6) protected details, (7) authentication, (8) profile and error pages, (9) documentation. Commit actual work as you progress; don't fabricate history.
+## Project Structure
 
-## Submission checklist
-- `npm run build` succeeds
-- API returns actual data (not fallback demo data)
-- signup/signin/protected page/profile tested
-- OAuth configured if required
-- deployed URL and GitHub repository submitted
+- `app/` — Application pages and routes
+- `components/` — Reusable UI components
+- `lib/` — API and authentication utilities
+- `public/` — Static assets
 
-The original Figma file was not supplied here; styling follows the written brief rather than exact Figma matching. Review the code and be prepared to explain the main features.
+## Author
+
+Developed as a web development project.
