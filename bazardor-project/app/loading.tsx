@@ -1,0 +1,1 @@
+export default function Loading(){return <main className="wrap page"><div className="skeleton title-skel"/><div className="grid">{Array.from({length:6},(_,i)=><div className="skeleton card-skel" key={i}/>)}</div></main>}
