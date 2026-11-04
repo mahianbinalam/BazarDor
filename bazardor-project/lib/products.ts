@@ -109,7 +109,11 @@ export async function getProduct(s: string): Promise<Product | null> {
     const data = await get(`/products/${product.id}`);
     const detail = data?.data ?? data?.product ?? data;
 
-    if (detail && (detail.nameBn || detail.today !== undefined)) {
+    if (
+      detail &&
+      typeof detail === "object" &&
+      (detail.nameBn || detail.name || detail.today !== undefined)
+    ) {
       return norm(detail);
     }
   } catch (error) {
@@ -118,27 +122,3 @@ export async function getProduct(s: string): Promise<Product | null> {
 
   return product;
 }
-
-export async function getCategories() {
-  const products = await getProducts();
-
-  const unique = new Map<string, {
-    name: string;
-    slug: string;
-    icon: string;
-  }>();
-
-  products.forEach((p) => {
-    if (!unique.has(p.categorySlug)) {
-      unique.set(p.categorySlug, {
-        name: p.category,
-        slug: p.categorySlug,
-        icon: p.emoji,
-      });
-    }
-  });
-
-  return Array.from(unique.values());
-}
-
-export const demoMode = (_products: Product[]) => false;
