@@ -122,3 +122,21 @@ export async function getProduct(s: string): Promise<Product | null> {
 
   return product;
 }
+export async function getCategories() {
+  const products = await getProducts();
+
+  const categories = Array.from(
+    new Map(
+      products.map((product) => [
+        product.categorySlug,
+        {
+          slug: product.categorySlug,
+          name: product.category,
+          icon: product.emoji,
+        },
+      ])
+    ).values()
+  );
+
+  return categories;
+}
